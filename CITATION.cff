@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Kambarami"
+  given-names: "Milton Simbarashe"
+  orcid: "https://orcid.org/0000-0002-1913-2834"
+title: "SIMBA 2.0: Bayesian Evolutionary Selection Pipeline"
+version: 2.0.0
+date-released: 2026-03-17
+url: "https://github.com/MiltonSimba/SIMBA-2.0"
