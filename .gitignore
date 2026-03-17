@@ -1,0 +1,24 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environments
+.venv/
+env/
+venv/
+ENV/
+
+# Data and Results
+# We ignore these to keep your repository clean and protect data
+*.csv
+*.png
+*.fasta
+*.fna
+*.txt
+data/
+results/
+
+# System files
+.DS_Store
+Thumbs.db
