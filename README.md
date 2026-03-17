@@ -1,38 +1,45 @@
 # SIMBA 2.0
 
-SIMBA 2.0 is an evolutionary bioinformatics pipeline designed to detect selection pressures in viral genomic data. It specifically focuses on identifying codon sites under positive selection within the SARS-CoV-2 Spike protein. 
+SIMBA 2.0 is an advanced evolutionary bioinformatics tool designed to detect selection pressures in viral genomic data. It provides a significant upgrade from the original SIMBA v1 framework by incorporating more biologically realistic models and modern Bayesian inference.
 
-The tool bridges the gap between complex statistical inference and biological interpretation by automatically mapping evolutionary hotspots to functional protein domains.
+## Evolution from Version 1
 
-## Core Methodology
+SIMBA 2.0 represents a complete rebuild of the selection detection engine.
 
-The pipeline employs an empirical Bayesian framework to estimate synonymous and non-synonymous substitution rates.
+### Transition to HKY85
 
-* **HKY85 Engine** The model accounts for transition and transversion bias alongside uneven nucleotide frequencies.
-* **Bayesian Grid Inference** Site-specific rates are estimated using a global prior learned from the entire dataset.
-* **Numerical Stability** Integrated epsilon-normalisation prevents calculation errors in regions with low sequence coverage.
+The original version of SIMBA relied on the Nei-Gojobori method. While foundational, the Nei-Gojobori approach assumes that all nucleotide transitions and transversions occur at the same rate. 
 
-## Installation
+SIMBA 2.0 replaces this with the **HKY85 (Hasegawa, Kishino, and Yano 1985)** substitution model. This transition provides several critical improvements:
 
-Ensure you have a Python environment ready. You may install the necessary dependencies using the provided requirements file.
+* **Transition and Transversion Bias** The model explicitly accounts for the fact that certain mutations are more frequent than others.
+* **Uneven Base Frequencies** It adjusts for the specific A, C, G, and T distributions found in the SARS-CoV-2 genome.
+* **Accuracy** These adjustments result in more precise estimates of synonymous (alpha) and non-synonymous (beta) rates.
 
-`pip install -r requirements.txt`
+### Statistical Improvements
 
-## Getting Started
+Beyond the substitution model, SIMBA 2.0 introduces several new statistical layers.
 
-1. Place your genomic sequences in the data directory.
-2. Ensure your reference sequence is correctly configured in the orchestrator script.
-3. Run the primary script from your terminal.
+* **Empirical Bayesian Grid** Instead of a simple point estimate, the tool uses a Bayesian grid to learn a global prior from the local Zimbabwean dataset. 
+* **Numerical Stability via Epsilon Normalisation** This prevents likelihood errors often caused by gaps in lower-quality surveillance sequences.
+* **High-Impact Visualisation** The new engine generates publication-standard Manhattan plots with automated domain shading for the RBD and RBM.
+
+## Methodology References
+
+If you use SIMBA 2.0 in your research, please cite the following foundational methods:
+
+1. Hasegawa, M., Kishino, H. and Yano, T. (1985). Dating of the human-ape splitting by a molecular clock of mitochondrial DNA.
+2. Murrell, B., et al. (2013). FUBAR: A Fast, Unconstrained Bayesian AppRoximation for Inferring Selection.
+3. Nei, M., and Gojobori, T. (1986). Simple methods for estimating the numbers of synonymous and nonsynonymous nucleotide substitutions. (Referenced as the baseline for SIMBA v1).
+
+## Usage
+
+Place your genomic sequences in the data directory and run the orchestrator script.
 
 `python run_simba.py`
 
-## Visualisation
+## Contact
 
-SIMBA 2.0 generates high-resolution graphics suitable for peer-reviewed publications. 
-
-* **Selection Landscape** A Manhattan-style plot showing the probability of selection across the Spike gene with domain-specific shading.
-* **Rate Divergence** A scatter plot illustrating the relationship between alpha and beta rates to highlight evolutionary hotspots.
-
-## Contact and Contributions
-
-If you are interested in collaborating on viral evolution research or localising these tools for different genomic contexts, feel free to reach out.
+Milton Simbarashe Kambarami | (mskambarami@gmail.com |
+ Bioinformatics and Virology Researcher |
+ Harare, Zimbabwe
